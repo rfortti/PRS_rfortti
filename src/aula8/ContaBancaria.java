@@ -44,13 +44,13 @@ public class ContaBancaria {
         this.saldo = this.saldo - 0.25;
         String mensagem = "Conta numero: "
         + this.numeroConta + ", e saldo: " + this.saldo;
-        this.historico = String.valueOf("\nConsulta de saldo (taxa de "
+        this.historico =  this.historico + String.valueOf("\nConsulta de saldo (taxa de "
                 + "0.25. Novo saldo: " + this.saldo);
         return mensagem;
     }
     
     public void aplicarReajuste(){
-        this.saldo = this.saldo + (2/100);
+        this.saldo = this.saldo + (this.saldo * 2/100);
         this.historico = this.historico + "\nReajuste aplicado. Novo"
                 + "saldo: " + String.valueOf(this.saldo);
     }

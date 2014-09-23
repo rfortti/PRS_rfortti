@@ -52,10 +52,10 @@ public class FormConta extends javax.swing.JFrame {
         txtValorDeposito.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Valor:");
+        jLabel3.setText("Valor: R$");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Valor:");
+        jLabel4.setText("Valor: R$");
 
         txtValorSaque.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -85,41 +85,51 @@ public class FormConta extends javax.swing.JFrame {
 
         btnAplicarReajuste.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAplicarReajuste.setText("Aplicar Reajuste");
+        btnAplicarReajuste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarReajusteActionPerformed(evt);
+            }
+        });
 
         btnExibirHistorico.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnExibirHistorico.setText("Exibir Histórico");
+        btnExibirHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExibirHistoricoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
                         .addComponent(btnConsultarSaldo)
                         .addGap(30, 30, 30)
                         .addComponent(btnAplicarReajuste)
                         .addGap(26, 26, 26)
                         .addComponent(btnExibirHistorico))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnDepositar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(76, 76, 76)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(90, 90, 90)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtValorSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
+                        .addGap(127, 127, 127)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,13 +160,17 @@ public class FormConta extends javax.swing.JFrame {
 
     private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
         // TODO add your handling code here:
+        double valorSaque = Double.parseDouble(txtValorSaque.getText());
+        this.cb.sacar(valorSaque);
+        JOptionPane.showMessageDialog(null,"Saque efetuado!");
+        txtValorSaque.setText("");  //vazio
     }//GEN-LAST:event_btnSacarActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
         // TODO add your handling code here:
         double valorDeposito = Double.parseDouble(txtValorDeposito.getText());
         this.cb.depositar(valorDeposito);
-        JOptionPane.showMessageDialog(null,"Deposito efetuado");
+        JOptionPane.showMessageDialog(null,"Deposito efetuado!");
         txtValorDeposito.setText("");  //vazio
     }//GEN-LAST:event_btnDepositarActionPerformed
 
@@ -165,6 +179,17 @@ public class FormConta extends javax.swing.JFrame {
         String mensagem = this.cb.consultarSaldo();
         JOptionPane.showMessageDialog(null, mensagem);
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
+
+    private void btnExibirHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirHistoricoActionPerformed
+        // TODO add your handling code here:
+        String historico = this.cb.exibirHistorico();
+        JOptionPane.showMessageDialog(null, historico);
+    }//GEN-LAST:event_btnExibirHistoricoActionPerformed
+
+    private void btnAplicarReajusteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarReajusteActionPerformed
+        // TODO add your handling code here:
+        this.cb.aplicarReajuste();
+    }//GEN-LAST:event_btnAplicarReajusteActionPerformed
 
     /**
      * @param args the command line arguments
