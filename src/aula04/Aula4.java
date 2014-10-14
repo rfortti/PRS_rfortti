@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package exercicio1;
+package aula04;
 
 import exercicio1.Carro;
 import exercicio1.Moto;
@@ -20,17 +20,19 @@ public class Aula4
      * @param args the command line arguments
      */
     public static void main(String[] args) 
-    {        
-        Carro c = new Carro();
-        c.marca = "Honda";
-        c.modelo = "Civic";
-        c.quantCombustivel = 50;
-        c.Andar(200, 120);
+    {
+        Funcionario f = new Funcionario();
+        f.nome = "João";
+        f.salario = 1500;
+        f.horasExtras = 0;
         
-        Moto m = new Moto();
-        m.marca = "Honda";
-        m.modelo = "CG 125";
-        m.quantCombustivel = 15;
-        m.Andar(100, 110);
+        Gerente g = new Gerente();
+        g.nome = "Paulo";
+        g.salario = 1500;
+        g.horasExtras = 0;
+        g.bonus = 500;
+        
+        f.calcularSalarioTotal();
+        g.calcularSalarioTotal();
     }  
 }
